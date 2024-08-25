@@ -9,6 +9,10 @@ function LoginSuccessCallback() {
     const params = useSearchParams()
     const token = params.get("token");
 
+    React.useEffect(() => {
+        localStorage.setItem("token", String(token));
+    }, [token])
+
     return (
         <div>
             <h4 className={"text-3xl"}>Login Success</h4>

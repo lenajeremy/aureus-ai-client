@@ -3,6 +3,7 @@ import type {Metadata} from "next";
 import {Inter} from "next/font/google";
 import {Toaster} from "@/components/ui/sonner"
 import "./globals.css";
+import {ThemeProvider} from "@/components/theme-providers";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -17,8 +18,10 @@ export default function RootLayout({children}: Readonly<{
     return (
         <html lang="en">
         <body className={inter.className}>
-        {children}
-        <Toaster richColors position={"top-right"}/>
+        <ThemeProvider enableSystem attribute={"class"} defaultTheme={"system"}>
+            {children}
+            <Toaster richColors position={"top-right"}/>
+        </ThemeProvider>
         </body>
         </html>
     );

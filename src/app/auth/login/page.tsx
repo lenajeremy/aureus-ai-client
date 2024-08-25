@@ -31,7 +31,8 @@ export default function LoginPage() {
         >
             <Button
                 type="submit"
-                variant={"outline"}
+                variant={"default"}
+                color={"primary"}
             >
                 Sign in with GitHub
             </Button>
