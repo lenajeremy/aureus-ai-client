@@ -1,6 +1,12 @@
 'use client'
 import React from 'react'
 import {toast} from "sonner";
+import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
+import {cn} from "@/lib/utils";
+import {Badge} from "@/components/ui/badge";
+import Link from "next/link";
+import {GithubIcon} from "lucide-react";
+import {Button} from "@/components/ui/button";
 
 export default function Home() {
     const [repos, setRepos] = React.useState([])
@@ -35,7 +41,33 @@ export default function Home() {
                     <>
                         <h1>Hello World</h1>
                         <h4>Welcome to CodeReviewAI 🤖</h4>
-                        <pre>{JSON.stringify(repos, null, 3)}</pre>
+                        {/*<pre>{JSON.stringify(repos, null, 3)}</pre>*/}
+                        <div className={"grid grid-cols-4 gap-4"}>
+                            {
+                                repos.data.map(r => (
+                                    <Card className={cn("w-[380px]")} key={r.id}>
+                                        <CardHeader>
+                                            <CardTitle>{r.name}</CardTitle>
+                                            <CardDescription>{r.description || "No Description"}</CardDescription>
+                                        </CardHeader>
+                                        <CardContent className="grid gap-4">
+                                            <div className={"flex gap-2 flex-col"}>
+                                                <p>Last Updated At: {new Date(r.updated_at).toLocaleDateString()}</p>
+                                                <p>Open Issues: <span
+                                                    className={"text-bright-turquoise-700 font-semibold"}>{r.open_issues_count}</span>
+                                                </p>
+                                            </div>
+
+                                            <Button size="icon" className={"bg-bright-turquoise-800 text-bright-turquoise-100"}>
+                                                <a target={"_blank"} href = {r.html_url}>
+                                                    <GithubIcon/>
+                                                </a>
+                                            </Button>
+                                        </CardContent>
+                                    </Card>
+                                ))
+                            }
+                        </div>
                     </>
                 )
             }
