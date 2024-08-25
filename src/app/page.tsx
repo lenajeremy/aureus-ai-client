@@ -9,7 +9,7 @@ import {GithubIcon} from "lucide-react";
 import {Button} from "@/components/ui/button";
 
 export default function Home() {
-    const [repos, setRepos] = React.useState([])
+    const [repos, setRepos] = React.useState<any>([])
     const [loading, setLoading] = React.useState(true)
 
     const getRepos = React.useCallback(async () => {
@@ -44,8 +44,8 @@ export default function Home() {
                         {/*<pre>{JSON.stringify(repos, null, 3)}</pre>*/}
                         <div className={"grid grid-cols-4 gap-4"}>
                             {
-                                repos.data.map(r => (
-                                    <Card className={cn("w-[380px]")} key={r.id}>
+                                repos.data.map((r: any) => (
+                                    <Card key={r.id}>
                                         <CardHeader>
                                             <CardTitle>{r.name}</CardTitle>
                                             <CardDescription>{r.description || "No Description"}</CardDescription>
