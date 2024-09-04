@@ -7,8 +7,13 @@ import {toast} from "sonner";
 export default function LoginPage() {
     const INITIATE_GH_AUTH_URL = "http://127.0.0.1:8080/auth/github/initiate"
     const GH_AUTH_IDENTIFIER = "hello_world"
-    const successCallbackURL = window.location.origin + "/auth/callback/success"
-    const errorCallbackURL = window.location.origin + "/auth/callback/error"
+    const [successCallbackURL, setSuccessCallbackURL] = React.useState<string>()
+    const [errorCallbackURL, setErrorCallbackURL] = React.useState<string>()
+
+    React.useEffect(() => {
+        setSuccessCallbackURL(window.location.origin + "/auth/callback/success")
+        setErrorCallbackURL(window.location.origin + "/auth/callback/error")
+    }, [])
 
     const handleSubmit = React.useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -23,7 +28,7 @@ export default function LoginPage() {
             toast.error(error.message)
             console.error(error)
         }
-    }, [])
+    }, [successCallbackURL, errorCallbackURL])
 
     return (
         <form onSubmit={handleSubmit}

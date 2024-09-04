@@ -12,7 +12,7 @@ function LoginErrorCallback() {
 
     return (
         <div>
-            <h4 className={"text-3xl"}>Login Success</h4>
+            <h4 className={"text-3xl text-red-500"}>Login errror</h4>
             <p className={"text-destructive-foreground"}>
                 {error}
             </p>
