@@ -15,7 +15,7 @@ export default function LoginPage() {
   const [email, setEmail] = React.useState("");
 
   React.useEffect(() => {
-    setSuccessCallbackURL(window.location.origin + "/auth/callback/success");
+    setSuccessCallbackURL(window.location.origin + "/dashboard");
     setErrorCallbackURL(window.location.origin + "/auth/callback/error");
   }, []);
 
@@ -53,7 +53,7 @@ export default function LoginPage() {
         onChange={(e) => setEmail(e.currentTarget.value)}
       />
 
-      <Button type="submit" className="w-full">
+      <Button type="submit" className="w-full" disabled={isLoading}>
         Submit
       </Button>
       <p className="text-sm text-left w-full -mt-2">

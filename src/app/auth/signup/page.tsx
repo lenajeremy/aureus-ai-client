@@ -16,7 +16,7 @@ export default function SignUpPage() {
   const [fullName, setFullName] = React.useState("");
 
   React.useEffect(() => {
-    setSuccessCallbackURL(window.location.origin + "/auth/callback/success");
+    setSuccessCallbackURL(window.location.origin + "/dashboard");
     setErrorCallbackURL(window.location.origin + "/auth/callback/error");
   }, []);
 
@@ -63,7 +63,7 @@ export default function SignUpPage() {
         placeholder="Email"
       />
 
-      <Button type="submit" className="w-full">
+      <Button type="submit" className="w-full" disabled = {isLoading}>
         Sign Up
       </Button>
       <p className="text-sm text-left w-full -mt-2">
