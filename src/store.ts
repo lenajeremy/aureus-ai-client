@@ -10,6 +10,7 @@ const store = configureStore({
         [authApi.reducerPath]: authApi.reducer,
     },
     middleware(getDefaultMiddleware) {
+        // @ts-ignore
         return getDefaultMiddleware(middleware)
     },
 })

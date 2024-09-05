@@ -22,7 +22,7 @@ export default function LoginPage() {
   const [signInWithEmail, { isLoading, isError }] = useEmailSignInMutation();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
       const res = await signInWithEmail({
         email,
@@ -42,22 +42,36 @@ export default function LoginPage() {
   return (
     <form
       onSubmit={handleSubmit}
-      className={"flex items-center flex-col gap-4 justify-center p-24 h-screen w-screen"}
+      className={
+        "flex items-center justify-center p-24 h-screen gap-4 flex-col mx-auto w-[500px]"
+      }
     >
+      <h3 className="text-xl font-semibold text-center mb-6">Sign In</h3>
       <Input
         type="email"
         value={email}
         onChange={(e) => setEmail(e.currentTarget.value)}
       />
 
-      <Button type="submit">Submit</Button>
-
-      <h4> ---- OR ---- </h4>
-
-      <Button variant={"outline"}>Sign in with GitHub</Button>
-      <p className="text-center">
-        <Link href={"/auth/signup"}>Create Account</Link>
+      <Button type="submit" className="w-full">
+        Submit
+      </Button>
+      <p className="text-sm text-left w-full -mt-2">
+        <span>Don&apos;t have an account?{" "}</span>
+        <Link className="font-semibold" href={"/auth/signup"}>
+          Create one
+        </Link>
       </p>
+
+      <div className="flex items-center justify-between gap-3 w-full">
+        <div className="h-[1px] w-full bg-gray-300 rounded-full" />
+        <p className="text-secondary-foreground">OR</p>
+        <div className="h-[1px] w-full bg-gray-300 rounded-full" />
+      </div>
+
+      <Button variant={"outline"} className="w-full">
+        Sign in with GitHub
+      </Button>
     </form>
   );
 }
