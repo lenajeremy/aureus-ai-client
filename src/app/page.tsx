@@ -13,6 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { GithubIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { redirect } from "next/navigation";
 
 export default function Home() {
   const [repos, setRepos] = React.useState<any>([]);
@@ -25,12 +26,12 @@ export default function Home() {
       const res = await fetch("http://127.0.0.1:8080/github/repos", {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log(res)
+      console.log(res);
       if (res.ok) {
         const data = await res.json();
         setRepos(data.data);
       } else {
-        toast.error(JSON.stringify(res))
+        toast.error(JSON.stringify(res));
       }
     } catch (error: any) {
       toast.error(error.message);
@@ -40,7 +41,12 @@ export default function Home() {
   }, []);
 
   React.useEffect(() => {
-    getRepos();
+    const token = localStorage.getItem("token");
+    if (token) {
+      getRepos();
+    } else {
+      redirect("/auth/login");
+    }
   }, []);
 
   return (
@@ -51,6 +57,16 @@ export default function Home() {
         <>
           <h1>Hello World</h1>
           <h4>Welcome to CodeReviewAI 🤖</h4>
+          <div>
+            <Button
+              onClick={() => {
+                localStorage.clear();
+                location.reload();
+              }}
+            >
+              Sign Out
+            </Button>
+          </div>
           {/*<pre>{JSON.stringify(repos, null, 3)}</pre>*/}
           <div className={"grid grid-cols-4 gap-4"}>
             {repos.map((r: any) => (

@@ -94,6 +94,7 @@ export function Dashboard() {
                 <CardDescription>Get started by creating your first project</CardDescription>
               </CardHeader>
               <CardContent className="flex flex-col items-center">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/placeholder.svg?height=200&width=200" alt="Welcome illustration" className="mb-6" />
                 <p className="text-center mb-6">
                   AI Code Review helps you improve your code quality and catch bugs early. 

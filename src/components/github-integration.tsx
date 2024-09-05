@@ -36,7 +36,7 @@ export function GithubIntegration() {
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen)
 
-  const handleRepositoryToggle = (repoId) => {
+  const handleRepositoryToggle = (repoId: number) => {
     setRepositories(repositories.map(repo =>
       repo.id === repoId ? { ...repo, isInstalled: !repo.isInstalled } : repo
     ))

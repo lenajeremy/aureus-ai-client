@@ -1,28 +1,26 @@
-import * as React from 'react'
-import type {Metadata} from "next";
-import {Inter} from "next/font/google";
-import {Toaster} from "@/components/ui/sonner"
+import * as React from "react";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import {ThemeProvider} from "@/components/theme-providers";
+import Providers from "./providers";
 
-const inter = Inter({subsets: ["latin"]});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "CodeReviewAI",
-    description: "AI-powered code-review automation",
+  title: "CodeReviewAI",
+  description: "AI-powered code-review automation",
 };
 
-export default function RootLayout({children}: Readonly<{
-    children: React.ReactNode;
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
 }>) {
-    return (
-        <html lang="en">
-        <body className={inter.className}>
-        <ThemeProvider enableSystem attribute={"class"} defaultTheme={"system"}>
-            {children}
-            <Toaster richColors position={"top-right"}/>
-        </ThemeProvider>
-        </body>
-        </html>
-    );
+  return (
+    <html lang="en">
+      <body className={inter.className}>
+        <Providers>{children}</Providers>
+      </body>
+    </html>
+  );
 }
